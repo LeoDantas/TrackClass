@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.DTOs;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Application.IServices
 {
     public interface IAlunoService
     {
-        Task<List<Aluno>> GetAllAlunos();
-        Task<Aluno> GetAlunoById(int id);
-        Task AddAluno(Aluno aluno);
-        Task UpdateAluno(Aluno aluno);
+        Task<List<AlunoDto>> GetAllAlunos();
+        Task<AlunoDto> GetAlunoById(int id);
+        Task AddAluno(AlunoDto aluno);
+        Task UpdateAluno(AlunoDto aluno);
         Task DeleteAluno(int id);
     }
 }

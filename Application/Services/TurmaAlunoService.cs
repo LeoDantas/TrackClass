@@ -1,6 +1,7 @@
 ﻿using Application.IServices;
+using Domain.DTOs;
 using Domain.Entities;
-using Domain.IRepositories;
+using Infrastructure.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,22 +19,22 @@ namespace Application.Services
             _turmaAlunoRepository = turmaAlunoRepository;
         }
 
-        public async Task<List<TurmaAluno>> GetAllTurmaAluno()
+        public async Task<List<TurmaAlunoDto>> GetAllTurmaAluno()
         {
             return await _turmaAlunoRepository.GetAllAsync();
         }
 
-        public async Task<TurmaAluno> GetTurmaAlunoById(int id)
+        public async Task<TurmaAlunoDto> GetTurmaAlunoById(int id)
         {
             return await _turmaAlunoRepository.GetByIdAsync(id);
         }
 
-        public async Task AddTurmaAluno(TurmaAluno turmaAluno)
+        public async Task AddTurmaAluno(TurmaAlunoDto turmaAluno)
         {
             await _turmaAlunoRepository.AddAsync(turmaAluno);
         }
 
-        public async Task UpdateTurmaAluno(TurmaAluno turmaAluno)
+        public async Task UpdateTurmaAluno(TurmaAlunoDto turmaAluno)
         {
             await _turmaAlunoRepository.UpdateAsync(turmaAluno);
         }

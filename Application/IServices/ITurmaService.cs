@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.DTOs;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Application.IServices
 {
     public interface ITurmaService
     {
-        Task<List<Turma>> GetAllTurmas();
-        Task<Turma> GetTurmaById(int id);
-        Task AddTurma(Turma turma);
-        Task UpdateTurma(Turma turma);
+        Task<List<TurmaDto>> GetAllTurmas();
+        Task<TurmaDto> GetTurmaById(int id);
+        Task AddTurma(TurmaDto turma);
+        Task UpdateTurma(TurmaDto turma);
         Task DeleteTurma(int id);
     }
 }

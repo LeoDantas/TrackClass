@@ -1,6 +1,7 @@
 ﻿using Application.IServices;
+using Domain.DTOs;
 using Domain.Entities;
-using Domain.IRepositories;
+using Infrastructure.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,22 +20,22 @@ namespace Application.Services
             _alunoRepository = alunoRepository;
         }
 
-        public async Task<List<Aluno>> GetAllAlunos()
+        public async Task<List<AlunoDto>> GetAllAlunos()
         {
             return await _alunoRepository.GetAllAsync();
         }
 
-        public async Task<Aluno> GetAlunoById(int id)
+        public async Task<AlunoDto> GetAlunoById(int id)
         {
             return await _alunoRepository.GetByIdAsync(id);
         }
 
-        public async Task AddAluno(Aluno aluno)
+        public async Task AddAluno(AlunoDto aluno)
         {
             await _alunoRepository.AddAsync(aluno);
         }
 
-        public async Task UpdateAluno(Aluno aluno)
+        public async Task UpdateAluno(AlunoDto aluno)
         {
             await _alunoRepository.UpdateAsync(aluno);
         }
