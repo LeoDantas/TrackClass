@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Domain;
 using Infrastructure;
 using Infrastructure.Data;
-using Domain.IRepositories;
+using Infrastructure.IRepositories;
 using Infrastructure.Repository;
 using Application.IServices;
 using Microsoft.OpenApi.Models;
