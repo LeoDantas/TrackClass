@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.IRepositories;
+using Infrastructure.IRepositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.DTOs;
 
 namespace Infrastructure.Repository
 {
@@ -19,23 +20,23 @@ namespace Infrastructure.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<Aluno> GetByIdAsync(int id)
+        public async Task<AlunoDto> GetByIdAsync(int id)
         {
             return await _dbContext.Aluno.FindAsync(id);
         }
 
-        public async Task<List<Aluno>> GetAllAsync()
+        public async Task<List<AlunoDto>> GetAllAsync()
         {
             return await _dbContext.Aluno.ToListAsync();
         }
 
-        public async Task AddAsync(Aluno aluno)
+        public async Task AddAsync(AlunoDto aluno)
         {
             _dbContext.Aluno.Add(aluno);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Aluno aluno)
+        public async Task UpdateAsync(AlunoDto aluno)
         {
             _dbContext.Aluno.Update(aluno);
             await _dbContext.SaveChangesAsync();

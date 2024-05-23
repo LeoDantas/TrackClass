@@ -1,6 +1,6 @@
 ﻿
 using Domain.Entities;
-using Domain.IRepositories;
+using Infrastructure.IRepositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.DTOs;
 
 namespace Infrastructure.Repository
 {
@@ -20,23 +21,23 @@ namespace Infrastructure.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<Turma> GetByIdAsync(int id)
+        public async Task<TurmaDto> GetByIdAsync(int id)
         {
             return await _dbContext.Turma.FindAsync(id);
         }
 
-        public async Task<List<Turma>> GetAllAsync()
+        public async Task<List<TurmaDto>> GetAllAsync()
         {
             return await _dbContext.Turma.ToListAsync();
         }
 
-        public async Task AddAsync(Turma turma)
+        public async Task AddAsync(TurmaDto turma)
         {
             _dbContext.Turma.Add(turma);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Turma turma)
+        public async Task UpdateAsync(TurmaDto turma)
         {
             _dbContext.Turma.Update(turma);
             await _dbContext.SaveChangesAsync();
