@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using Domain.Entities;
 using Application.IServices;
+using Domain.DTOs;
 
 namespace Presentation.Controllers
 {
@@ -34,14 +35,14 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Aluno>> AddAluno(Aluno aluno)
+        public async Task<ActionResult<Aluno>> AddAluno(AlunoDto aluno)
         {
             await _alunoService.AddAluno(aluno);
             return CreatedAtAction(nameof(GetAlunoById), new { id = aluno.Id }, aluno);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAluno(int id, Aluno aluno)
+        public async Task<IActionResult> UpdateAluno(int id, AlunoDto aluno)
         {
             if (id != aluno.Id)
                 return BadRequest();

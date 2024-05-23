@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
+using Domain.DTOs;
 
 namespace Infrastructure.Data
 {
@@ -7,8 +8,8 @@ namespace Infrastructure.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Aluno> Aluno { get; set; }
-        public DbSet<Turma> Turma { get; set; }
-        public DbSet<TurmaAluno> TurmaAluno { get; set; }
+        public DbSet<AlunoDto> Aluno { get; set; }
+        public DbSet<TurmaDto> Turma { get; set; }
+        public DbSet<TurmaAlunoDto> TurmaAluno { get; set; }
     }
 }
