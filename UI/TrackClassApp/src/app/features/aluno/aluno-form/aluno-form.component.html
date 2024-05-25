@@ -1,0 +1,14 @@
+<div fxLayout="column" fxLayoutAlign="start center" class="container">
+  <mat-card>
+    <form [formGroup]="alunoForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Nome do Aluno</mat-label>
+        <input matInput formControlName="nome">
+        <mat-error *ngIf="alunoForm.get('nome')?.invalid">Nome é obrigatório</mat-error>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <button mat-raised-button color="primary" type="submit" [disabled]="alunoForm.invalid">Adicionar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

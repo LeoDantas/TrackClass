@@ -1,0 +1,12 @@
+<h2>{{ turmaId ? 'Editar Turma' : 'Adicionar Turma' }}</h2>
+<form [formGroup]="turmaForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nome">Nome</label>
+    <input id="nome" formControlName="nome">
+    <div *ngIf="turmaForm.get('nome')?.invalid && turmaForm.get('nome')?.touched">
+      Nome é obrigatório.
+    </div>
+  </div>
+  <button type="submit" [disabled]="turmaForm.invalid">{{ turmaId ? 'Salvar' : 'Adicionar' }}</button>
+  <button type="button" (click)="cancel()">Cancelar</button>
+</form>

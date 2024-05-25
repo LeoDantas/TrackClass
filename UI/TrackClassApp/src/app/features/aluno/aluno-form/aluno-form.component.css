@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  padding-top: 20px;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px;
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}

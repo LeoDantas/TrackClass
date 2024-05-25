@@ -1,0 +1,9 @@
+<h2>Lista de Turmas-Aluno</h2>
+<ul>
+  <li *ngFor="let turmaAluno of turmaAlunos">
+    {{ turmaAluno.alunoId }} - {{ turmaAluno.turmaId }}
+    <button (click)="deleteTurmaAluno(turmaAluno.id)">Excluir</button>
+    <a [routerLink]="['/turma-aluno-form', turmaAluno.id]">Editar</a>
+  </li>
+</ul>
+<a routerLink="/turma-aluno-form">Adicionar Nova Turma-Aluno</a>
