@@ -26,6 +26,14 @@ namespace Presentation
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200") 
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod());
+            });
+
             services.AddControllers();
 
             // Configuração do banco de dados SQLite
@@ -60,6 +68,8 @@ namespace Presentation
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseAuthorization();
 
