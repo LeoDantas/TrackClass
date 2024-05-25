@@ -483,3 +483,4 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 /UI/TrackClassApp/.angular/cache
+/UI/TrackClassApp/.vscode
