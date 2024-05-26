@@ -12,6 +12,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
 import { AlunoListComponent } from './features/aluno/aluno-list/aluno-list.component';
@@ -25,11 +35,20 @@ import { AlunoService } from './core/services/aluno.service';
 import { TurmaService } from './core/services/turma.service';
 import { TurmaAlunoService } from './core/services/turma-aluno.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HomeComponent } from './home/home.component';
+import { ConfirmDialogComponent } from './features/confirm-dialog/confirm-dialog.component';
 
 const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'alunos', component: AlunoListComponent },
-  { path: 'aluno-form', component: AlunoFormComponent },
-  { path: '', redirectTo: '/alunos', pathMatch: 'full' }
+  { path: 'turmas', component: TurmaListComponent },
+  { path: 'turma-aluno', component: TurmaAlunoListComponent },
+  { path: 'aluno/new', component: AlunoFormComponent },
+  { path: 'aluno/view/:id', component: AlunoFormComponent },
+  { path: 'alunos/edit/:id', component: AlunoFormComponent },
+  { path: 'turma/new', component: TurmaFormComponent },
+  { path: 'turma/view/:id', component: TurmaFormComponent },
+  { path: 'turmas/edit/:id', component: TurmaFormComponent },
 ];
 
 @NgModule({
@@ -40,7 +59,9 @@ const appRoutes: Routes = [
     TurmaListComponent,
     TurmaFormComponent,
     TurmaAlunoListComponent,
-    TurmaAlunoFormComponent
+    TurmaAlunoFormComponent,
+    HomeComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,12 +78,23 @@ const appRoutes: Routes = [
     MatCardModule,
     FormsModule,
     FlexLayoutModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatListModule,
+    MatDialogModule,
+    CheckboxModule,
+    InputTextModule,
+    CalendarModule,
+    ButtonModule,
+    TableModule
   ],
   providers: [
     AlunoService,
     TurmaService,
     TurmaAlunoService,
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

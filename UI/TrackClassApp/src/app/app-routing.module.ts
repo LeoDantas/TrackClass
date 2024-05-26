@@ -9,15 +9,18 @@ import { TurmaAlunoFormComponent } from './features/turma-aluno/turma-aluno-form
 
 const routes: Routes = [
   { path: 'alunos', component: AlunoListComponent },
-  { path: 'aluno-form', component: AlunoFormComponent },
-  { path: 'aluno-form/:id', component: AlunoFormComponent },
+  { path: 'aluno/new', component: AlunoFormComponent },
+  { path: 'aluno/view/:id', component: AlunoFormComponent },
+  { path: 'alunos/edit/:id', component: AlunoFormComponent },
   { path: 'turmas', component: TurmaListComponent },
-  { path: 'turma-form', component: TurmaFormComponent },
-  { path: 'turma-form/:id', component: TurmaFormComponent },
+  { path: 'turma/new', component: TurmaFormComponent },
+  { path: 'turma/view/:id', component: TurmaFormComponent },
+  { path: 'turmas/edit/:id', component: TurmaFormComponent },
   { path: 'turma-alunos', component: TurmaAlunoListComponent },
   { path: 'turma-aluno-form', component: TurmaAlunoFormComponent },
   { path: 'turma-aluno-form/:id', component: TurmaAlunoFormComponent },
-  { path: '', redirectTo: '/alunos', pathMatch: 'full' }
+  { path: '', redirectTo: '/alunos', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
