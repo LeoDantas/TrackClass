@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TurmaService } from '../../../core/services/turma.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-turma-form',
   templateUrl: './turma-form.component.html',
-  styleUrls: ['./turma-form.component.css']
+  styleUrls: ['./turma-form.component.css'],
+  providers: [MessageService]
 })
 export class TurmaFormComponent implements OnInit {
   turmaForm: FormGroup;
@@ -19,7 +21,8 @@ export class TurmaFormComponent implements OnInit {
     private fb: FormBuilder,
     private turmaService: TurmaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) {
     this.turmaForm = this.fb.group({
       ativo: [true],
@@ -54,16 +57,32 @@ export class TurmaFormComponent implements OnInit {
     if (this.turmaForm.valid) {
 
       if (this.turmaId) {
-        this.turmaService.updateTurma({ ...this.turmaForm.value, id: this.turmaId }).subscribe(() => {
-          this.router.navigate(['/turmas']);
-        });
+        this.turmaService.updateTurma({ ...this.turmaForm.value, id: this.turmaId }).subscribe(
+        (response) => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Turma alterada com sucesso' });
+          setTimeout(() => {
+            this.router.navigate(['/turmas']);
+          }, 2000);
+        },
+        (error) => {
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao alterar Turma' });
+        }
+      );
       } else {
         const turmaData = this.turmaForm.value;
         turmaData.dataCriacao = new Date().toISOString();
         turmaData.ativo = true;
-        this.turmaService.addTurma(turmaData).subscribe(() => {
-          this.router.navigate(['/turmas']);
-        });
+        this.turmaService.addTurma(turmaData).subscribe(
+        (response) => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Turma adicionada com sucesso' });
+          setTimeout(() => {
+            this.router.navigate(['/turmas']);
+          }, 2000);
+        },
+        (error) => {
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao adicionar Turma' });
+        }
+      );
       }
     }
   }
