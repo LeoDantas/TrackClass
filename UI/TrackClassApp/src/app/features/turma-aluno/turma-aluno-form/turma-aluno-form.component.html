@@ -1,12 +1,19 @@
-<h2>{{ turmaAlunoId ? 'Editar Turma-Aluno' : 'Adicionar Turma-Aluno' }}</h2>
-<form [formGroup]="turmaAlunoForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="nome">Nome</label>
-    <input id="nome" formControlName="nome">
-    <div *ngIf="turmaAlunoForm.get('nome')?.invalid && turmaAlunoForm.get('nome')?.touched">
-      Nome é obrigatório.
+<div class="container">
+  <form [formGroup]="turmaAlunoForm" (ngSubmit)="onSubmit()">
+    <div class="field" *ngIf="isEdit">
+      <label for="ativo">Ativo</label>
+      <p-checkbox formControlName="ativo" binary="true"></p-checkbox>
     </div>
-  </div>
-  <button type="submit" [disabled]="turmaAlunoForm.invalid">{{ turmaAlunoId ? 'Salvar' : 'Adicionar' }}</button>
-  <button type="button" (click)="cancel()">Cancelar</button>
-</form>
+    <div class="field">
+      <label for="turma">Turma</label>
+      <p-dropdown id="turma" formControlName="turma" [options]="listaTurmas" [(ngModel)]="getListaTurmas" optionLabel="nome" placeholder="Selecione"
+        [style]="{ 'width': '300px' }">
+      </p-dropdown>
+    </div>
+    <div class="button-container">
+      <button pButton type="submit" label="Salvar"></button>
+      <button pButton type="button" label="Cancelar" (click)="onCancel()" class="cancel-button"></button>
+    </div>
+  </form>
+</div>
+<p-toast></p-toast>
