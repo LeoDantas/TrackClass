@@ -24,6 +24,10 @@ namespace Application.Services
         {
             return await _turmaAlunoRepository.GetAllAsync();
         }
+        public async Task<List<TurmaAlunoNomeDto>> GetAllTurmaAlunoNome()
+        {
+            return await _turmaAlunoRepository.GetAllTurmaAlunoNome();
+        }  
 
         public async Task<TurmaAlunoDto> GetTurmaAlunoById(int id)
         {

@@ -21,8 +21,8 @@ namespace Presentation.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Aluno>>> GetAllAlunos()
         {
-            var Turmas = await _alunoService.GetAllAlunos();
-            return Ok(Turmas);
+            var Alunos = await _alunoService.GetAllAlunos();
+            return Ok(Alunos);
         }
 
         [HttpGet("{id}")]
@@ -58,5 +58,6 @@ namespace Presentation.Controllers
             await _alunoService.DeleteAluno(id);
             return NoContent();
         }
+
     }
 }

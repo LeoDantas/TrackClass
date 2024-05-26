@@ -13,6 +13,7 @@ namespace Infrastructure.IRepositories
     {
         Task<TurmaAlunoDto> GetByIdAsync(int id);
         Task<List<TurmaAlunoDto>> GetAllAsync();
+        Task<List<TurmaAlunoNomeDto>> GetAllTurmaAlunoNome();
         Task AddAsync(TurmaAlunoDto turmaAluno);
         Task UpdateAsync(TurmaAlunoDto turmaAluno);
         Task DeleteAsync(int id);

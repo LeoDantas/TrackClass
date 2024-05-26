@@ -32,6 +32,22 @@ namespace Infrastructure.Repository
             return await _dbContext.TurmaAluno.ToListAsync();
         }
 
+        public async Task<List<TurmaAlunoNomeDto>> GetAllTurmaAlunoNome()
+        {
+            var turmaAlunos = await (from ta in _dbContext.TurmaAluno
+                                     join t in _dbContext.Turma on ta.TurmaId equals t.Id
+                                     join a in _dbContext.Aluno on ta.AlunoId equals a.Id
+                                     select new TurmaAlunoNomeDto
+                                     {
+                                         Id = ta.Id,
+                                         Ativo = t.Ativo,
+                                         NomeAluno = a.Nome,
+                                         NomeTurma = t.Nome
+                                     }).ToListAsync();
+
+            return turmaAlunos;
+        }
+
         public async Task AddAsync(TurmaAlunoDto turmaAluno)
         {
             _dbContext.TurmaAluno.Add(turmaAluno);

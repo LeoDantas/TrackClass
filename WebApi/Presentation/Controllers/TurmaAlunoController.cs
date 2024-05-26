@@ -4,6 +4,9 @@ using Infrastructure.Data;
 using Domain.Entities;
 using Application.IServices;
 using Domain.DTOs;
+using Application.Services;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Reflection.Metadata;
 
 namespace Presentation.Controllers
 {
@@ -22,6 +25,13 @@ namespace Presentation.Controllers
         public async Task<ActionResult<IEnumerable<Turma>>> GetAllTurmaAluno()
         {
             var Turmas = await _turmaAlunoService.GetAllTurmaAluno();
+            return Ok(Turmas);
+        }
+
+        [HttpGet("getAllTurmaAlunoNome")]
+        public async Task<ActionResult<IEnumerable<TurmaAlunoNomeDto>>> GetAllTurmaAlunoNome()
+        {
+            var Turmas = await _turmaAlunoService.GetAllTurmaAlunoNome();
             return Ok(Turmas);
         }
 
@@ -98,5 +108,6 @@ namespace Presentation.Controllers
                 return NotFound();
             return Ok(TurmasPorAluno);
         }
+
     }
 }

@@ -12,6 +12,7 @@ namespace Application.IServices
     public interface ITurmaAlunoService
     {
         Task<List<TurmaAlunoDto>> GetAllTurmaAluno();
+        Task<List<TurmaAlunoNomeDto>> GetAllTurmaAlunoNome();
         Task<TurmaAlunoDto> GetTurmaAlunoById(int id);
         Task AddTurmaAluno(TurmaAlunoDto turmaAluno);
         Task UpdateTurmaAluno(TurmaAlunoDto turmaAluno);
