@@ -3,6 +3,16 @@
   margin: 0 auto;
 }
 
+.header {
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc;
+}
+
 .field {
   margin-bottom: 1em;
 }

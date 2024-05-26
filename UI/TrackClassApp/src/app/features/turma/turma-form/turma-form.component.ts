@@ -16,6 +16,7 @@ export class TurmaFormComponent implements OnInit {
   isEdit: boolean = false;
   isDisabled: boolean = false;
   viewFlag: string | null = null;
+  titulo: string = 'Adicionar Turma';
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +36,13 @@ export class TurmaFormComponent implements OnInit {
     this.turmaId = this.route.snapshot.params['id'] ? +this.route.snapshot.params['id'] : null;
     this.viewFlag = this.router.url;
     this.isEdit = this.turmaId != null;
+
+    if (this.isEdit) {
+      this.titulo = 'Alterar Turma';
+    }
+
     if(this.isDisabled = this.viewFlag.includes('turma/view')){
+      this.titulo = 'Visualizar Turma';
       this.turmaForm.get('ativo')?.disable();
       this.turmaForm.get('nome')?.disable();
       this.turmaForm.get('descricao')?.disable();
