@@ -12,7 +12,6 @@ export class AlunoService {
   constructor(private http: HttpClient) { }
 
   getAlunos(): Observable<Aluno[]> {
-    console.log(this.http.get<Aluno[]>(this.apiUrl));
     return this.http.get<Aluno[]>(this.apiUrl);
   }
 
