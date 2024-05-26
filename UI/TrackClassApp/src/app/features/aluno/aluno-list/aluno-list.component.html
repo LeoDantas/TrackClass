@@ -1,33 +1,32 @@
-<div fxLayout="column" fxLayoutAlign="start center" class="container">
-  <mat-card>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <mat-form-field appearance="outline" fxFlex>
-        <mat-label>Pesquisar Alunos</mat-label>
-        <input matInput [formControl]="searchControl">
-      </mat-form-field>
-      <button mat-icon-button color="primary" routerLink="/aluno-form">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-    <table mat-table [dataSource]="filteredAlunos" class="mat-elevation-z8">
-      <!-- Nome Column -->
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let aluno"> {{aluno.nome}} </td>
-      </ng-container>
-
-      <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Ações </th>
-        <td mat-cell *matCellDef="let aluno">
-          <button mat-icon-button color="warn" (click)="deleteAluno(aluno.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
+<div class="container">
+  <div class="actions">
+    <input type="text" pInputText placeholder="Filtrar por nome" [(ngModel)]="filter" (input)="filterAlunos()" />
+    <button pButton type="button" label="Novo Aluno" (click)="newAluno()"></button>
+  </div>
+  <p-table [value]="filteredAlunos">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Ativo</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Email</th>
+        <th>Data de Nascimento</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-aluno>
+      <tr>
+        <td>{{ aluno.ativo ? 'Sim' : 'Não' }}</td>
+        <td>{{ aluno.nome }}</td>
+        <td>{{ aluno.sobrenome }}</td>
+        <td>{{ aluno.email }}</td>
+        <td>{{ aluno.dataNascimento | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-eye" (click)="onView(aluno.id)"></button>
+          <button pButton type="button" icon="pi pi-pencil" (click)="onEdit(aluno.id)"></button>
+          <button pButton type="button" icon="pi pi-trash" (click)="onDelete(aluno.id)"></button>
         </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </mat-card>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

@@ -1,12 +1,20 @@
-<h2>{{ turmaId ? 'Editar Turma' : 'Adicionar Turma' }}</h2>
-<form [formGroup]="turmaForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="nome">Nome</label>
-    <input id="nome" formControlName="nome">
-    <div *ngIf="turmaForm.get('nome')?.invalid && turmaForm.get('nome')?.touched">
-      Nome é obrigatório.
+<div class="container">
+  <form [formGroup]="turmaForm" (ngSubmit)="onSubmit()">
+    <div class="field" *ngIf="isEdit">
+      <label for="ativo">Ativo</label>
+      <p-checkbox formControlName="ativo" binary="true" ></p-checkbox>
     </div>
-  </div>
-  <button type="submit" [disabled]="turmaForm.invalid">{{ turmaId ? 'Salvar' : 'Adicionar' }}</button>
-  <button type="button" (click)="cancel()">Cancelar</button>
-</form>
+    <div class="field">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" pInputText formControlName="nome" />
+    </div>
+    <div class="field">
+      <label for="descricao">Descrição</label>
+      <input id="descricao" type="text" pInputText formControlName="descricao" />
+    </div>
+    <div class="button-container">
+      <button pButton type="submit" label="Salvar"></button>
+      <button pButton type="button" label="Cancelar" (click)="onCancel()" class="cancel-button"></button>
+    </div>
+  </form>
+</div>

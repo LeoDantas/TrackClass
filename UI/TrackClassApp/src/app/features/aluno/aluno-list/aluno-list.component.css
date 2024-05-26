@@ -1,15 +1,23 @@
 .container {
-  width: 100%;
-  padding-top: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-mat-card {
-  width: 100%;
-  max-width: 800px;
-  margin: 20px;
-  padding: 20px;
+.field {
+  margin-bottom: 1em;
 }
 
-table {
+.field label {
+  display: block;
+  margin-bottom: .5em;
+}
+
+.field input, .field p-checkbox, .field p-calendar {
   width: 100%;
+}
+
+.actions {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
 }

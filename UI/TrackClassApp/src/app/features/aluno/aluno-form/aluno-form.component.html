@@ -1,14 +1,28 @@
-<div fxLayout="column" fxLayoutAlign="start center" class="container">
-  <mat-card>
-    <form [formGroup]="alunoForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" fxFlex>
-        <mat-label>Nome do Aluno</mat-label>
-        <input matInput formControlName="nome">
-        <mat-error *ngIf="alunoForm.get('nome')?.invalid">Nome é obrigatório</mat-error>
-      </mat-form-field>
-      <div fxLayout="row" fxLayoutAlign="end center">
-        <button mat-raised-button color="primary" type="submit" [disabled]="alunoForm.invalid">Adicionar</button>
-      </div>
-    </form>
-  </mat-card>
+<div class="container">
+  <form [formGroup]="alunoForm" (ngSubmit)="onSubmit()">
+    <div class="field" *ngIf="isEdit">
+      <label for="ativo">Ativo</label>
+      <p-checkbox formControlName="ativo" binary="true" ></p-checkbox>
+    </div>
+    <div class="field">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" pInputText formControlName="nome" />
+    </div>
+    <div class="field">
+      <label for="sobrenome">Sobrenome</label>
+      <input id="sobrenome" type="text" pInputText formControlName="sobrenome" />
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="text" pInputText formControlName="email" />
+    </div>
+    <div class="field">
+      <label for="dataNascimento">Data de Nascimento</label>
+      <p-calendar formControlName="dataNascimento" dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="button-container">
+      <button pButton type="submit" label="Salvar"></button>
+      <button pButton type="button" label="Cancelar" (click)="onCancel()" class="cancel-button"></button>
+    </div>
+  </form>
 </div>

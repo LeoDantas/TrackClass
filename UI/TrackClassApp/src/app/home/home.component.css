@@ -1,0 +1,20 @@
+.center-card {
+  margin: auto;
+  width: 80%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.home-icon {
+  font-size: 36px;
+  cursor: pointer;
+}
+
+mat-icon{
+  padding-right: 1%;
+}

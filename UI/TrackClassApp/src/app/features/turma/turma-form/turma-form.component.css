@@ -1,0 +1,31 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.field {
+  margin-bottom: 1em;
+}
+
+.field label {
+  display: block;
+  margin-bottom: .5em;
+}
+
+.field input, .field p-checkbox, .field p-calendar {
+  width: 100%;
+}
+
+.actions {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container button {
+  margin: 1pt;
+}

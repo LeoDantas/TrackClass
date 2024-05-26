@@ -1,9 +1,28 @@
-<h2>Lista de Turmas</h2>
-<ul>
-  <li *ngFor="let turma of turmas">
-    {{ turma.nome }}
-    <button (click)="deleteTurma(turma.id)">Excluir</button>
-    <a [routerLink]="['/turma-form', turma.id]">Editar</a>
-  </li>
-</ul>
-<a routerLink="/turma-form">Adicionar Nova Turma</a>
+<div class="container">
+  <div class="actions">
+    <input type="text" pInputText placeholder="Filtrar por nome" [(ngModel)]="filter" (input)="filterAlunos()" />
+    <button pButton type="button" label="Nova Turma" (click)="newTurma()"></button>
+  </div>
+  <p-table [value]="filteredTurmas">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Ativo</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-turma>
+      <tr>
+        <td>{{ turma.ativo ? 'Sim' : 'Não' }}</td>
+        <td>{{ turma.nome }}</td>
+        <td>{{ turma.descricao }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-eye" (click)="onView(turma.id)"></button>
+          <button pButton type="button" icon="pi pi-pencil" (click)="onEdit(turma.id)"></button>
+          <button pButton type="button" icon="pi pi-trash" (click)="onDelete(turma.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
