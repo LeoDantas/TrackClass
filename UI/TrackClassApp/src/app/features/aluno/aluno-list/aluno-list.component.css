@@ -3,6 +3,16 @@
   margin: 0 auto;
 }
 
+.header {
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc;
+}
+
 .field {
   margin-bottom: 1em;
 }
@@ -20,4 +30,12 @@
   margin-bottom: 1em;
   display: flex;
   justify-content: space-between;
+}
+
+.actions input {
+  margin-right: 10px;
+}
+
+.actions button {
+  margin-left: 10px;
 }

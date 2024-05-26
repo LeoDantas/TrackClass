@@ -1,16 +1,22 @@
 <div class="container">
+  <div class="header">
+    <h2>Manutenção de Alunos</h2>
+  </div>
   <div class="actions">
     <input type="text" pInputText placeholder="Filtrar por nome" [(ngModel)]="filter" (input)="filterAlunos()" />
-    <button pButton type="button" label="Novo Aluno" (click)="newAluno()"></button>
+    <div>
+      <button pButton type="button" label="Gerar Relatório" (click)="gerarRelatorioPDF()"></button>
+      <button pButton type="button" label="Novo Aluno" (click)="newAluno()"></button>
+    </div>
   </div>
-  <p-table [value]="filteredAlunos">
+  <p-table [value]="filteredAlunos" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]" [sortField]="sortField" [sortOrder]="sortOrder" (sortFunction)="customSort($event)">
     <ng-template pTemplate="header">
       <tr>
-        <th>Ativo</th>
-        <th>Nome</th>
-        <th>Sobrenome</th>
-        <th>Email</th>
-        <th>Data de Nascimento</th>
+        <th pSortableColumn="ativo">Ativo <p-sortIcon field="ativo"></p-sortIcon></th>
+        <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
+        <th pSortableColumn="sobrenome">Sobrenome <p-sortIcon field="sobrenome"></p-sortIcon></th>
+        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="dataNascimento">Data de Nascimento <p-sortIcon field="dataNascimento"></p-sortIcon></th>
         <th>Ações</th>
       </tr>
     </ng-template>

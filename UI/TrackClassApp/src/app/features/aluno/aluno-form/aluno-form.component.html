@@ -1,8 +1,11 @@
 <div class="container">
+  <div class="header">
+    <h2>{{ titulo }}</h2>
+  </div>
   <form [formGroup]="alunoForm" (ngSubmit)="onSubmit()">
     <div class="field" *ngIf="isEdit">
       <label for="ativo">Ativo</label>
-      <p-checkbox formControlName="ativo" binary="true" ></p-checkbox>
+      <p-checkbox formControlName="ativo" binary="true"></p-checkbox>
     </div>
     <div class="field">
       <label for="nome">Nome</label>

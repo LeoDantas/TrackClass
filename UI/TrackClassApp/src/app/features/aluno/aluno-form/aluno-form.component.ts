@@ -16,6 +16,7 @@ export class AlunoFormComponent implements OnInit {
   isEdit: boolean = false;
   isDisabled: boolean = false;
   viewFlag: string | null = null;
+  titulo: string = 'Adicionar Aluno';
 
   constructor(
     private fb: FormBuilder,
@@ -37,7 +38,13 @@ export class AlunoFormComponent implements OnInit {
     this.alunoId = this.route.snapshot.params['id'] ? +this.route.snapshot.params['id'] : null;
     this.viewFlag = this.router.url;
     this.isEdit = this.alunoId != null;
+
+    if (this.isEdit) {
+      this.titulo = 'Alterar Aluno';
+    }
+
     if(this.isDisabled = this.viewFlag.includes('aluno/view')){
+      this.titulo = 'Visualizar Aluno';
       this.alunoForm.get('ativo')?.disable();
       this.alunoForm.get('nome')?.disable();
       this.alunoForm.get('sobrenome')?.disable();
