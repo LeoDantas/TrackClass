@@ -5,10 +5,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { SearchByAlunoId } from '../models/searchByAlunoId.model';
 import { MessageService } from 'primeng/api';
+import { TurmaAlunoNome } from '../models/turma-aluno-nome.model';
 
 export interface TurmaAlunoResponse {
   result: SearchByAlunoId[];
 }
+
 
 @Injectable({
   providedIn: 'root',
@@ -66,5 +68,9 @@ export class TurmaAlunoService {
     let params = new HttpParams()
       .set('turmaId', turmaId.toString());
     return this.http.get<any>(`${this.apiUrl}/existeTurmaVinculada`, { params }).pipe(map(response => response.result.value));;
+  }
+
+  getTurmaAlunoNome(): Observable<TurmaAlunoNome[]> {
+    return this.http.get<TurmaAlunoNome[]>(`${this.apiUrl}/getAllTurmaAlunoNome`)
   }
 }
