@@ -30,4 +30,8 @@ export class TurmaService {
   deleteTurma(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  getTurmasByAluno(alunoId: number): Observable<Turma[]> {
+    return this.http.get<Turma[]>(`${this.apiUrl}?alunoId=${alunoId}`);
+  }
 }
