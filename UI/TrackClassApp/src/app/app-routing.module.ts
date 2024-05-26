@@ -17,8 +17,9 @@ const routes: Routes = [
   { path: 'turma/view/:id', component: TurmaFormComponent },
   { path: 'turmas/edit/:id', component: TurmaFormComponent },
   { path: 'turma-alunos', component: TurmaAlunoListComponent },
-  { path: 'turma-aluno-form', component: TurmaAlunoFormComponent },
-  { path: 'turma-aluno-form/:id', component: TurmaAlunoFormComponent },
+  { path: 'turma-aluno/new/:id', component: TurmaAlunoFormComponent },
+  { path: 'turma-aluno/view/:id', component: TurmaAlunoFormComponent },
+  { path: 'turma-aluno/edit/:id', component: TurmaAlunoFormComponent },
   { path: '', redirectTo: '/alunos', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];

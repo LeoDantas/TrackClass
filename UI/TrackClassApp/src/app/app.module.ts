@@ -22,6 +22,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { AppComponent } from './app.component';
 import { AlunoListComponent } from './features/aluno/aluno-list/aluno-list.component';
@@ -49,6 +53,9 @@ const appRoutes: Routes = [
   { path: 'turma/new', component: TurmaFormComponent },
   { path: 'turma/view/:id', component: TurmaFormComponent },
   { path: 'turmas/edit/:id', component: TurmaFormComponent },
+  { path: 'turma-aluno/new/:id', component: TurmaAlunoFormComponent },
+  { path: 'turma-aluno/view/:id', component: TurmaAlunoFormComponent },
+  { path: 'turma-aluno/edit/:id', component: TurmaAlunoFormComponent },
 ];
 
 @NgModule({
@@ -86,7 +93,10 @@ const appRoutes: Routes = [
     InputTextModule,
     CalendarModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    ToastModule,
+    DropdownModule
   ],
   providers: [
     AlunoService,
@@ -94,7 +104,8 @@ const appRoutes: Routes = [
     TurmaAlunoService,
     provideAnimationsAsync(),
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    DatePipe
+    DatePipe,
+    MessageService,
   ],
   bootstrap: [AppComponent]
 })
