@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="header">
+    <h2>{{ titulo }}</h2>
+  </div>
   <form [formGroup]="turmaAlunoForm" (ngSubmit)="onSubmit()">
     <div class="field" *ngIf="isEdit">
       <label for="ativo">Ativo</label>

@@ -31,6 +31,7 @@ export class TurmaAlunoFormComponent implements OnInit {
   listaAlunos: Aluno[] = [];
   listaTurmas: Turma[] = [];
   displayDialog: boolean = false;
+  titulo: string = 'Vincular Aluno';
 
   constructor(
     private fb: FormBuilder,
