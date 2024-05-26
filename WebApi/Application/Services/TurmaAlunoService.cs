@@ -2,6 +2,7 @@
 using Domain.DTOs;
 using Domain.Entities;
 using Infrastructure.IRepositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace Application.Services
             return await _turmaAlunoRepository.GetByIdAsync(id);
         }
 
+
         public async Task AddTurmaAluno(TurmaAlunoDto turmaAluno)
         {
             await _turmaAlunoRepository.AddAsync(turmaAluno);
@@ -43,5 +45,24 @@ namespace Application.Services
         {
             await _turmaAlunoRepository.DeleteAsync(id);
         }
+
+        public async Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int alunoId)
+        {
+            return await _turmaAlunoRepository.SearchByAlunoIdAsync(alunoId);
+        }
+
+        public async Task<ActionResult<bool>> ExisteTurmaAluno(int alunoId, int turmaId)
+        {
+            return await _turmaAlunoRepository.ExisteTurmaAluno(alunoId, turmaId);
+        }
+        public async Task<ActionResult<bool>> ExisteAlunoVinculado(int alunoId)
+        {
+            return await _turmaAlunoRepository.ExisteAlunoVinculado(alunoId);
+        }
+        public async Task<ActionResult<bool>> ExisteTurmaVinculada(int turmaId)
+        {
+            return await _turmaAlunoRepository.ExisteTurmaVinculada(turmaId);
+        }
+
     }
 }

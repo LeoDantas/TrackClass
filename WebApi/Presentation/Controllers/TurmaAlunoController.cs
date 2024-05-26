@@ -58,5 +58,45 @@ namespace Presentation.Controllers
             await _turmaAlunoService.DeleteTurmaAluno(id);
             return NoContent();
         }
+
+        [HttpGet("searchByAlunoId")]
+        public async Task<ActionResult<SearchTurmaByAlunoDto>> SearchByAlunoId(int alunoId)
+        {
+            var TurmasPorAluno =  _turmaAlunoService.SearchByAlunoIdAsync(alunoId);
+
+            if (TurmasPorAluno == null)
+                return NotFound();
+            return Ok(TurmasPorAluno);
+        }
+
+        [HttpGet("existeTurmaAluno")]
+        public async Task<ActionResult<bool>> ExisteTurmaAluno(int alunoId, int turmaId)
+        {
+            var TurmasPorAluno = _turmaAlunoService.ExisteTurmaAluno(alunoId, turmaId);
+
+            if (TurmasPorAluno == null)
+                return NotFound();
+            return Ok(TurmasPorAluno);
+        }
+
+        [HttpGet("existeAlunoVinculado")]
+        public async Task<ActionResult<bool>> ExisteAlunoVinculado(int alunoId)
+        {
+            var TurmasPorAluno = _turmaAlunoService.ExisteAlunoVinculado(alunoId);
+
+            if (TurmasPorAluno == null)
+                return NotFound();
+            return Ok(TurmasPorAluno);
+        }
+
+        [HttpGet("existeTurmaVinculada")]
+        public async Task<ActionResult<bool>> ExisteTurmaVinculada(int turmaId)
+        {
+            var TurmasPorAluno = _turmaAlunoService.ExisteTurmaVinculada(turmaId);
+
+            if (TurmasPorAluno == null)
+                return NotFound();
+            return Ok(TurmasPorAluno);
+        }
     }
 }
