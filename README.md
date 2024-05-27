@@ -101,6 +101,11 @@ A documentação da API é gerada automaticamente utilizando o Swagger. Para ace
 # Projeto Angular
 Este é um projeto Angular que foi desenvolvido para controle e gestão de escolas, com o intuito de otimizar a vinculação de alunos em turmas.
 
+## Pré-requisitos
+- Angular 18
+- Visual Studio Code
+- Node 10+
+
 ## Bibliotecas Utilizadas
 - Angular: Utilizado como framework principal para o desenvolvimento da aplicação web devido à sua capacidade de criar single-page applications de forma eficiente e organizada.
 - Angular CLI: Utilizado para facilitar a criação de novos componentes, serviços, módulos e outros artefatos do Angular, agilizando o desenvolvimento.
