@@ -23,13 +23,12 @@ export class TurmaAlunoListComponent implements OnInit {
   alunoId: number | null = null;
   filteredTurmaAlunos: SearchByAlunoId[] = [];
   errorMessage: string = '';
-  alunos: any[] = [];
-  filteredAlunos: any[] = [];
+  filteredTurmas: any[] = [];
   filter: string = '';
   sortField: string = '';
   sortOrder: number = 1;
   displayDialog: boolean = false;
-  selectedAluno: any;
+  selectedTurma: any;
   turmaAlunos: any[] = [];
   turmaAlunosNome: any[] = [];
 
@@ -38,16 +37,16 @@ export class TurmaAlunoListComponent implements OnInit {
     public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.alunoService.getAlunos().subscribe(alunos => {
-      this.alunos = alunos;
-      this.filteredAlunos = alunos;
+    this.turmaService.getTurmas().subscribe(turma => {
+      this.turmas = turma;
+      this.filteredTurmas = turma;
     });
   }
 
-  filterAlunos(): void {
-    this.filteredAlunos = this.alunos.filter(aluno =>
-      aluno.nome.toLowerCase().includes(this.filter.toLowerCase()) ||
-      aluno.sobrenome.toLowerCase().includes(this.filter.toLowerCase())
+  filterTurmas(): void {
+    this.filteredTurmas = this.turmas.filter(turma =>
+      turma.nome.toLowerCase().includes(this.filter.toLowerCase()) ||
+      turma.descricao.toLowerCase().includes(this.filter.toLowerCase())
     );
   }
 
@@ -85,9 +84,9 @@ export class TurmaAlunoListComponent implements OnInit {
     }
   }
 
-  showTurmasDialog(aluno: Aluno): void {
-    this.selectedAluno = aluno;
-    this.turmaAlunoService.searchByAlunoId(aluno.id).subscribe(turmas => {
+  showTurmasDialog(turma: Turma): void {
+    this.selectedTurma = turma;
+    this.turmaAlunoService.searchByAlunoId(turma.id).subscribe(turmas => {
       if(turmas.length > 0){
         this.turmaAlunos = turmas;
         this.displayDialog = true;
@@ -104,31 +103,30 @@ export class TurmaAlunoListComponent implements OnInit {
 
     this.turmaAlunoService.getTurmaAlunoNome().subscribe(turmaAlunosNome => {
       this.turmaAlunosNome = turmaAlunosNome;
+      const headers = [['Nome Aluno', 'Nome Turma', 'Ativo']];
+      const data = this.turmaAlunosNome.map(turmaAluno => [
+        turmaAluno.nomeAluno,
+        turmaAluno.nomeTurma,
+        turmaAluno.ativo ? 'Sim' : 'Não'
+      ]);
+
+      (doc as any).autoTable({
+          startY: 25,
+          head: headers,
+          body: data,
+          theme: 'grid',
+          styles: { cellPadding: 3, fontSize: 12 },
+          columnStyles: { 4: { cellWidth: 'wrap' } }
+      });
+
+      doc.save('relatorio_turma_alunos.pdf');
     });
-
-    const headers = [['Nome Aluno', 'Nome Turma', 'Ativo']];
-    const data = this.turmaAlunosNome.map(turmaAluno => [
-      turmaAluno.nomeAluno,
-      turmaAluno.nomeTurma,
-      turmaAluno.ativo ? 'Sim' : 'Não'
-    ]);
-
-    (doc as any).autoTable({
-        startY: 25,
-        head: headers,
-        body: data,
-        theme: 'grid',
-        styles: { cellPadding: 3, fontSize: 12 },
-        columnStyles: { 4: { cellWidth: 'wrap' } }
-    });
-
-    doc.save('relatorio_turma_alunos.pdf');
   }
 
   customSort(event: any): void {
     this.sortField = event.field;
     this.sortOrder = event.order;
-    this.filteredAlunos.sort((a, b) => {
+    this.filteredTurmas.sort((a, b) => {
       let value1 = a[this.sortField];
       let value2 = b[this.sortField];
       let result = null;

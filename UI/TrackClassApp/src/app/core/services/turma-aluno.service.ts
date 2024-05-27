@@ -41,12 +41,12 @@ export class TurmaAlunoService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  searchByAlunoId(alunoId: number): Observable<SearchByAlunoId[]> {
-    let params = new HttpParams().set('alunoId', alunoId.toString());
+  searchByAlunoId(turmaId: number): Observable<SearchByAlunoId[]> {
+    let params = new HttpParams().set('turmaId', turmaId.toString());
     return this.http.get<TurmaAlunoResponse>(`${this.apiUrl}/searchByAlunoId`, { params }).pipe(
       map(response => {
         if (response.result.length === 0) {
-          this.messageService.add({ severity: 'warn', summary: 'Nenhum resultado', detail: 'Não foram encontradas turmas para o aluno.' });
+          this.messageService.add({ severity: 'warn', summary: 'Nenhum resultado', detail: 'Não foram encontradas Alunos para a turma.' });
         }
         return response.result;
       })

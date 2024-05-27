@@ -24,7 +24,7 @@ export interface Turma {
 })
 export class TurmaAlunoFormComponent implements OnInit {
   turmaAlunoForm: FormGroup;
-  AlunoId: number | null = null;
+  TurmaId: number | null = null;
   isEdit: boolean = false;
   isDisabled: boolean = false;
   viewFlag: string | null = null;
@@ -44,13 +44,13 @@ export class TurmaAlunoFormComponent implements OnInit {
   ) {
     this.turmaAlunoForm = this.fb.group({
       ativo: [true],
-      turma: ['', Validators.required],
-      aluno: ['']
+      aluno: ['', Validators.required],
+      turma: ['']
     });
   }
 
   ngOnInit(): void {
-    this.AlunoId = this.route.snapshot.params['id'] ? +this.route.snapshot.params['id'] : null;
+    this.TurmaId = this.route.snapshot.params['id'] ? +this.route.snapshot.params['id'] : null;
     this.viewFlag = this.router.url;
     //this.isEdit = this.AlunoId != null;
 
@@ -58,23 +58,6 @@ export class TurmaAlunoFormComponent implements OnInit {
     this.getListaTurmas();
     this.displayDialog = true;
 
-    /*if(this.isDisabled = this.viewFlag.includes('turma/view')){
-      this.turmaAlunoForm.get('ativo')?.disable();
-      this.turmaAlunoForm.get('turma')?.disable();
-      this.turmaAlunoForm.get('aluno')?.disable();
-    }
-    if (this.AlunoId) {
-      this.turmaAlunoService.getTurmaAluno(this.AlunoId).subscribe((Response) =>
-        {
-          this.turmaAlunoForm.patchValue({
-            ativo: Response.ativo,
-            turma: Response.turmaId,
-            aluno: Response.alunoId,
-          });
-        }
-      );
-    }
-    */
   }
 
   getListaAlunos(): void {
@@ -92,8 +75,8 @@ export class TurmaAlunoFormComponent implements OnInit {
   onSubmit(): void {
     if (this.turmaAlunoForm.valid) {
       const turmaData = this.turmaAlunoForm.value;
-      turmaData.alunoId = this.AlunoId;
-      turmaData.turmaId = turmaData.turma.id;
+      turmaData.alunoId = turmaData.aluno.id;
+      turmaData.turmaId = this.TurmaId;
       turmaData.dataCriacao = new Date().toISOString();
       turmaData.ativo = true;
 
@@ -104,7 +87,7 @@ export class TurmaAlunoFormComponent implements OnInit {
           } else {
             this.turmaAlunoService.addTurmaAluno(turmaData).subscribe(
               (response) => {
-                this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Aluno adicionada a Turma com sucesso' });
+                this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Aluno adicionado a Turma com sucesso' });
                 setTimeout(() => {
                   this.router.navigate(['/turma-aluno']);
                 }, 2000);
