@@ -24,7 +24,37 @@ Restaurar as dependências do projeto:
 
 ## Configurando o Banco de dados
 
-A aplicação utiliza o Entity Framework Core com SQLite. Para configurar o banco de dados, você deve aplicar as migrações:
+A aplicação utiliza o Entity Framework Core com SQLite. SQLite foi usado porque esta na primeira versão e atualmente requer um banco de dados mais robusto. Contudo, se o projeto for escalonado, poderemos migrar facilmente para um banco de dados relacional mais avançado, como SQL Server, MySQL, Oracle ou Postgres. Segue os scripts de criação do banco de dados:
+
+```sql
+  CREATE TABLE "Aluno" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Aluno" PRIMARY KEY AUTOINCREMENT,
+          "DataCriacao" TEXT NOT NULL,
+          "Ativo" INTEGER NOT NULL,
+          "Nome" TEXT NOT NULL,
+          "Sobrenome" TEXT NOT NULL,
+          "Email" TEXT NOT NULL,
+          "DataNascimento" TEXT NOT NULL
+      );
+
+  CREATE TABLE "Turma" (
+            "Id" INTEGER NOT NULL CONSTRAINT "PK_Turma" PRIMARY KEY AUTOINCREMENT,
+            "DataCriacao" TEXT NOT NULL,
+            "Ativo" INTEGER NOT NULL,
+            "Nome" TEXT NOT NULL,
+            "Descricao" TEXT NOT NULL
+        );  
+
+  CREATE TABLE "TurmaAluno" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_TurmaAluno" PRIMARY KEY AUTOINCREMENT,
+          "DataCriacao" TEXT NOT NULL,
+          "Ativo" INTEGER NOT NULL,
+          "TurmaId" INTEGER NOT NULL,
+          "AlunoId" INTEGER NOT NULL
+      );   
+```
+
+Para configurar o banco de dados, você deve aplicar as migrações:
 
 ```bash
   dotnet ef migrations add InitialCreate
@@ -89,7 +119,7 @@ A API estará disponível em http://localhost:5017.
 - POST /api/TurmaAluno: Cria uma nova vinculação de aluno a uma turma.
 - PUT /api/TurmaAluno/{id}: Atualiza uma turma existente.
 - DELETE /api/TurmaAluno/{alunoId}/{turmaId}: Deleta uma vinculação de aluno a uma turma pelo ID do aluno e ID da turma.
-- GET /api/TurmaAluno/searchByAlunoId?alunoId={alunoId}: Retorna as turmas de um aluno específico.
+- GET /api/TurmaAluno/searchByAlunoId?turmaId={turmaId}: Retorna os alunos de uma turma específica
 - GET /api/TurmaAluno/existeTurmaAluno?alunoId={alunoId}&turmaId={turmaId}: Verifica se ja existe vinculo entre aluno e turma.
 - GET /api/TurmaAluno/existeAlunoVinculado?alunoId={alunoId}: Verifica se o aluno em questão esta vinculado em alguma turma.
 - GET /api/TurmaAluno/existeTurmaVinculada?turmaId={turmaId}: Verifica se a turma em quatao esta vinculada em alguma aluno.
