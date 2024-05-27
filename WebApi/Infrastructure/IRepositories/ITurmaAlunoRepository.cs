@@ -17,7 +17,7 @@ namespace Infrastructure.IRepositories
         Task AddAsync(TurmaAlunoDto turmaAluno);
         Task UpdateAsync(TurmaAlunoDto turmaAluno);
         Task DeleteAsync(int id);
-        Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int alunoId);
+        Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int turmaId);
         Task<ActionResult<bool>> ExisteTurmaAluno(int alunoId, int turmaId);
         Task<ActionResult<bool>> ExisteAlunoVinculado(int alunoId);
         Task<ActionResult<bool>> ExisteTurmaVinculada(int turmaId);

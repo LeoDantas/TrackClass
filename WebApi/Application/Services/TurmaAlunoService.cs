@@ -50,9 +50,9 @@ namespace Application.Services
             await _turmaAlunoRepository.DeleteAsync(id);
         }
 
-        public async Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int alunoId)
+        public async Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int turmaId)
         {
-            return await _turmaAlunoRepository.SearchByAlunoIdAsync(alunoId);
+            return await _turmaAlunoRepository.SearchByAlunoIdAsync(turmaId);
         }
 
         public async Task<ActionResult<bool>> ExisteTurmaAluno(int alunoId, int turmaId)

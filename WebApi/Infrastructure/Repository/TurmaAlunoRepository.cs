@@ -70,17 +70,17 @@ namespace Infrastructure.Repository
             }
         }
 
-        public async Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int alunoId)
+        public async Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int turmaId)
         {
             var turmaAlunos = await (from ta in _dbContext.TurmaAluno
-                                     join t in _dbContext.Turma on ta.TurmaId equals t.Id
-                                     where ta.AlunoId == alunoId && ta.Ativo == true
+                                     join a in _dbContext.Aluno on ta.AlunoId equals a.Id
+                                     where ta.TurmaId == turmaId && ta.Ativo == true
                                      select new SearchTurmaByAlunoDto
                                      {
                                          Id = ta.Id,
-                                         Ativo = t.Ativo,
-                                         Nome = t.Nome,
-                                         Descricao = t.Descricao
+                                         Ativo = a.Ativo,
+                                         Nome = a.Nome,
+                                         Sobrenome = a.Sobrenome
                                      }).ToListAsync();
 
             return turmaAlunos;

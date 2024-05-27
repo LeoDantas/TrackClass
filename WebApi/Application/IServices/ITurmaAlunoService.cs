@@ -17,7 +17,7 @@ namespace Application.IServices
         Task AddTurmaAluno(TurmaAlunoDto turmaAluno);
         Task UpdateTurmaAluno(TurmaAlunoDto turmaAluno);
         Task DeleteTurmaAluno(int id);
-        Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int alunoId);
+        Task<List<SearchTurmaByAlunoDto>> SearchByAlunoIdAsync(int turmaId);
         Task<ActionResult<bool>> ExisteTurmaAluno(int alunoId, int turmaId);
         Task<ActionResult<bool>> ExisteAlunoVinculado(int alunoId);
         Task<ActionResult<bool>> ExisteTurmaVinculada(int turmaId);

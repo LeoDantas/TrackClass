@@ -70,9 +70,9 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("searchByAlunoId")]
-        public async Task<ActionResult<SearchTurmaByAlunoDto>> SearchByAlunoId(int alunoId)
+        public async Task<ActionResult<SearchTurmaByAlunoDto>> SearchByAlunoId(int turmaId)
         {
-            var TurmasPorAluno =  _turmaAlunoService.SearchByAlunoIdAsync(alunoId);
+            var TurmasPorAluno =  _turmaAlunoService.SearchByAlunoIdAsync(turmaId);
 
             if (TurmasPorAluno == null)
                 return NotFound();
